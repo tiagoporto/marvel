@@ -8,6 +8,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "check-formatting": "prettier --check --ignore-unknown \"**/*\"",
+    "check-typing": "tsc --project tsconfig.json",
     "lint": "eslint --ext js,jsx,ts,tsx ./src --max-warnings 0"
   },
   "dependencies": {
