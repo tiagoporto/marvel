@@ -1,0 +1,11 @@
+{
+  "pageTitle": "Personagens Marvel",
+  "total": "Total: {{count}}",
+  "comics": "Quadrinhos",
+  "series": "Series",
+  "stories": "Histórias",
+  "errorPage": {
+    "message": "Alguma coisa deu errado...",
+    "buttonLabel": "Recarregar"
+  }
+}

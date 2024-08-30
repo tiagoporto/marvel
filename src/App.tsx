@@ -1,7 +1,16 @@
-import React from 'react'
+import { RouterProvider } from 'react-router-dom'
+import { CssBaseline } from '@mui/material'
+import { ErrorBoundary } from './components/ErrorBoundary'
+import { router } from './router'
 
-function App() {
-  return <div className="App">App</div>
+export const App = () => {
+  return (
+    <>
+      <CssBaseline />
+
+      <ErrorBoundary>
+        <RouterProvider router={router} />
+      </ErrorBoundary>
+    </>
+  )
 }
-
-export default App

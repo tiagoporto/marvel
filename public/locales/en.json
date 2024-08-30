@@ -1,0 +1,11 @@
+{
+  "pageTitle": "Marvel characters",
+  "total": "Total: {{count}}",
+  "comics": "Comics",
+  "series": "Series",
+  "stories": "Stories",
+  "errorPage": {
+    "message": "Something went wrong...",
+    "buttonLabel": "Reload"
+  }
+}
