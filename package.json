@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "homepage": "https://tiagoporto.github.io/marvel",
   "private": true,
+  "engines": {
+    "node": ">= 20",
+    "npm": ">= 10"
+  },
   "scripts": {
     "prepare": "husky",
     "start": "PUBLIC_URL=/ react-scripts start",
