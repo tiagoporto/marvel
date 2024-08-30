@@ -4,7 +4,6 @@ import {
   useNavigation,
   useSearchParams,
 } from 'react-router-dom'
-import { Character } from '../../schema/character.schema'
 import { useTranslation } from 'react-i18next'
 import {
   Avatar,
@@ -16,8 +15,9 @@ import {
   Pagination,
   PaginationItem,
   Stack,
-  Typography,
 } from '@mui/material'
+import { Character } from '../../schema/character.schema'
+import { Loading } from '../../components/Loading/'
 
 export const ListCharacters = () => {
   const { t } = useTranslation()
@@ -33,7 +33,7 @@ export const ListCharacters = () => {
     <>
       <p>{t('total', { count: total })}</p>
       {state === 'loading' ? (
-        <Typography>Loading</Typography>
+        <Loading />
       ) : (
         <>
           <List>

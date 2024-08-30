@@ -9,6 +9,8 @@ import {
   ButtonGroup,
 } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { Suspense } from 'react'
+import { Loading } from '../../components/Loading'
 
 export const Root = () => {
   const { t, i18n } = useTranslation()
@@ -52,8 +54,10 @@ export const Root = () => {
       </AppBar>
 
       <main>
-        <Container>
-          <Outlet />
+        <Container sx={{ mt: 4 }}>
+          <Suspense fallback={<Loading />}>
+            <Outlet />
+          </Suspense>
         </Container>
       </main>
     </Box>
