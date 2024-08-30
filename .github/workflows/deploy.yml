@@ -1,0 +1,51 @@
+name: Deploy to Pages
+
+on: workflow_dispatch
+
+jobs:
+  checks:
+    uses: ./.github/workflows/checks.yml
+    secrets: inherit
+
+  deploy:
+    name: Generate Build and Deploy to GitHub Pages
+    needs: [checks]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Install Dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Build app
+        run: npm run build
+        env:
+          REACT_APP_PRIV_KEY: ${{ secrets.REACT_APP_PRIV_KEY }}
+          REACT_APP_PUBLIC_KEY: ${{ secrets.REACT_APP_PUBLIC_KEY }}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './build'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
