@@ -4,6 +4,7 @@
   "comics": "Quadrinhos",
   "series": "Series",
   "stories": "Histórias",
+  "searchLabel": "Pesquisar personagem",
   "errorPage": {
     "message": "Alguma coisa deu errado...",
     "buttonLabel": "Recarregar"

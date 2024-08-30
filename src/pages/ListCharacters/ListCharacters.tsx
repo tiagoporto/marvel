@@ -1,4 +1,5 @@
 import {
+  Form,
   Link,
   useLoaderData,
   useNavigation,
@@ -7,6 +8,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import {
   Avatar,
+  Box,
   List,
   ListItem,
   ListItemAvatar,
@@ -15,6 +17,8 @@ import {
   Pagination,
   PaginationItem,
   Stack,
+  TextField,
+  Typography,
 } from '@mui/material'
 import { Character } from '../../schema/character.schema'
 import { Loading } from '../../components/Loading/'
@@ -31,14 +35,27 @@ export const ListCharacters = () => {
 
   return (
     <>
-      <p>{t('total', { count: total })}</p>
+      <Box>
+        <Form method="get">
+          <TextField
+            fullWidth
+            id="name"
+            name="name"
+            label={t('searchLabel')}
+            type="search"
+            sx={{ mb: 2 }}
+          />
+        </Form>
+
+        <Typography>{t('total', { count: total })}</Typography>
+      </Box>
       {state === 'loading' ? (
         <Loading />
       ) : (
         <>
           <List>
             {results?.map((c) => (
-              <ListItem key={c.id} alignItems="flex-start">
+              <ListItem key={c.id} alignItems="flex-start" disablePadding>
                 <ListItemButton component={Link} to={`character/${c.id}`}>
                   <ListItemAvatar>
                     <Avatar

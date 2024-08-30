@@ -1,12 +1,6 @@
 import { Fragment } from 'react'
 import { useLoaderData, useNavigation } from 'react-router-dom'
-import { ExpandMore } from '@mui/icons-material'
-
-import { Character } from '../../schema/character.schema'
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Avatar,
   Card,
   CardContent,
@@ -14,7 +8,9 @@ import {
   Typography,
 } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { Loading } from '../../components/Loading/'
+import { Character } from '../../schema/character.schema'
+import { Loading } from '../../components/Loading'
+import { ListItem } from './components/ListItem'
 
 export const ListCharacter = () => {
   const { t } = useTranslation()
@@ -29,7 +25,7 @@ export const ListCharacter = () => {
       ) : (
         results?.map((c) => {
           return (
-            <Card key={c.name}>
+            <Card key={c.id}>
               <CardHeader
                 title={c?.name}
                 avatar={
@@ -45,50 +41,29 @@ export const ListCharacter = () => {
               <CardContent>
                 <Typography variant="body2">{c?.description}</Typography>
 
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMore />}
-                    aria-controls="panel1-content"
-                    id="panel1-header"
-                  >
-                    <Typography>{t('comics')}</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    {c.comics?.items?.map((s) => (
-                      <Typography key={s.name}>{s.name}</Typography>
+                <ListItem title={t('comics')} id="comics-panel">
+                  <ul>
+                    {c.comics?.items?.map((s, i) => (
+                      <li key={`comic-${i}`}>{s.name}</li>
                     ))}
-                  </AccordionDetails>
-                </Accordion>
+                  </ul>
+                </ListItem>
 
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMore />}
-                    aria-controls="panel2-content"
-                    id="panel2-header"
-                  >
-                    <Typography>{t('series')}</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    {c.series?.items?.map((s) => (
-                      <Typography key={s.name}>{s.name}</Typography>
+                <ListItem title={t('series')} id="series-panel">
+                  <ul>
+                    {c.series?.items?.map((s, i) => (
+                      <li key={`serie-${i}`}>{s.name}</li>
                     ))}
-                  </AccordionDetails>
-                </Accordion>
+                  </ul>
+                </ListItem>
 
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMore />}
-                    aria-controls="panel3-content"
-                    id="panel3-header"
-                  >
-                    <Typography>{t('stories')}</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    {c.stories?.items?.map((s) => (
-                      <Typography key={s.name}>{s.name}</Typography>
+                <ListItem title={t('stories')} id="stories-panel">
+                  <ul>
+                    {c.stories?.items?.map((s, i) => (
+                      <li key={`story-${i}`}>{s.name}</li>
                     ))}
-                  </AccordionDetails>
-                </Accordion>
+                  </ul>
+                </ListItem>
               </CardContent>
             </Card>
           )

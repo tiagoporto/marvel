@@ -4,6 +4,7 @@
   "comics": "Comics",
   "series": "Series",
   "stories": "Stories",
+  "searchLabel": "Search character",
   "errorPage": {
     "message": "Something went wrong...",
     "buttonLabel": "Reload"
