@@ -28,6 +28,8 @@ export const ListCharacters = () => {
   const { state } = useNavigation()
   const [searchParams] = useSearchParams()
   const page = parseInt(searchParams.get('page') || '1', 10)
+
+  // useLoaderData has unknown type does not accept generics
   const { results, total } = useLoaderData() as {
     results: Character[]
     total: number

@@ -20,6 +20,8 @@ HighchartsMore(Highcharts)
 
 export const ListCharacter = () => {
   const { t } = useTranslation()
+
+  // useLoaderData has unknown type does not accept generics
   const { results } = useLoaderData() as { results: Character[] }
 
   const { state } = useNavigation()
