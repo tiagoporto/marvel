@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { useLoaderData, useNavigation } from 'react-router-dom'
 import {
   Avatar,
@@ -11,6 +10,13 @@ import { useTranslation } from 'react-i18next'
 import { Character } from '../../schema/character.schema'
 import { Loading } from '../../components/Loading'
 import { ListItem } from './components/ListItem'
+import Highcharts from 'highcharts'
+import HighchartsAccessibility from 'highcharts/modules/accessibility'
+import HighchartsMore from 'highcharts/highcharts-more'
+import HighchartsReact from 'highcharts-react-official'
+
+HighchartsAccessibility(Highcharts)
+HighchartsMore(Highcharts)
 
 export const ListCharacter = () => {
   const { t } = useTranslation()
@@ -47,6 +53,32 @@ export const ListCharacter = () => {
                       <li key={`comic-${i}`}>{s.name}</li>
                     ))}
                   </ul>
+
+                  <HighchartsReact
+                    highcharts={Highcharts}
+                    options={{
+                      chart: {
+                        type: 'packedbubble',
+                        height: '100%',
+                      },
+                      title: {
+                        text: t('comics'),
+                      },
+                      tooltip: {
+                        useHTML: true,
+                        pointFormat: '<b>{point.name}</b>',
+                      },
+                      series: [
+                        {
+                          name: t('comics'),
+                          data: c.comics?.items?.map((comic) => ({
+                            name: comic.name,
+                            value: 1,
+                          })),
+                        },
+                      ],
+                    }}
+                  />
                 </ListItem>
 
                 <ListItem title={t('series')} id="series-panel">
